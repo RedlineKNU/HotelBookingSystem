@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HotelBookingSystem.MainPage">
+    <StackLayout>
+        <Label Text="Система бронювання готелів"
+               VerticalOptions="CenterAndExpand"
+               HorizontalOptions="CenterAndExpand" />
+        <Button Text="Переглянути готелі" Clicked="OnViewHotelsClicked" />
+        <Button Text="Про програму" Clicked="OnAboutClicked" />
+        <Button Text="Додати готель" Clicked="OnAddHotelClicked" />
+        <Button Text="Редагувати готель" Clicked="OnEditHotelClicked" />
+        <Button Text="Пошук за місцем розташування" Clicked="OnSearchByLocationClicked" />
+        <Button Text="Пошук за діапазоном цін" Clicked="OnSearchByPriceRangeClicked" />
+        <Button Text="Пошук за кількістю кімнат" Clicked="OnSearchByAvailabilityClicked" />
+        <Button Text="Видалити готель" Clicked="OnRemoveHotelClicked" />
+    </StackLayout>
+</ContentPage>
