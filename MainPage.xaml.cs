@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace HotelBookingSystem
 {
@@ -9,6 +10,9 @@ namespace HotelBookingSystem
     {
         private HotelList hotelList;
         private string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "hotels.json"); // шлях до JSON файлу
+
+        // Властивість для прив'язки до CollectionView
+        public List<Hotel> Hotels { get; set; }
 
         public MainPage()
         {
@@ -22,22 +26,25 @@ namespace HotelBookingSystem
                 hotelList = new HotelList(hotels);
             }
 
+            // Ініціалізація списку для прив'язки
+            Hotels = hotelList.GetAllHotels();
+            BindingContext = this;
+
             // Реєстрація події закриття програми
             Application.Current.ModalPopped += OnAppClose;
         }
 
-        private async void OnViewHotelsClicked(object sender, EventArgs e)
-        {
-            var hotels = hotelList.GetAllHotels();
-            string displayHotels = "Список готелів:\n";
+        //private async void OnViewHotelsClicked(object sender, EventArgs e)
+        //{
+        //    string displayHotels = "Список готелів:\n";
 
-            foreach (var hotel in hotels)
-            {
-                displayHotels += $"{hotel.Name} в {hotel.Location}, Кімнат: {hotel.AvailableRooms}, Ціна за ніч: {hotel.PricePerNight} USD\n";
-            }
+        //    foreach (var hotel in Hotels)
+        //    {
+        //        displayHotels += $"{hotel.Name} в {hotel.Location}, Кімнат: {hotel.AvailableRooms}, Ціна за ніч: {hotel.PricePerNight} USD\n";
+        //    }
 
-            await DisplayAlert("Готелі", displayHotels, "OK");
-        }
+        //    await DisplayAlert("Готелі", displayHotels, "OK");
+        //}
 
         private async void OnAboutClicked(object sender, EventArgs e)
         {
@@ -45,7 +52,6 @@ namespace HotelBookingSystem
             await DisplayAlert("Про програму", aboutInfo, "OK");
         }
 
-        // Метод для додавання готелю
         private async void OnAddHotelClicked(object sender, EventArgs e)
         {
             string name = await DisplayPromptAsync("Додати Готель", "Введіть назву готелю:");
@@ -57,7 +63,7 @@ namespace HotelBookingSystem
 
             var newHotel = new Hotel
             {
-                Id = hotelList.GetAllHotels().Count + 1, // генерація нового ID
+                Id = Hotels.Count + 1, // генерація нового ID
                 Name = name,
                 Location = location,
                 AvailableRooms = availableRooms,
@@ -68,12 +74,13 @@ namespace HotelBookingSystem
             JsonFileHandler.SaveHotels(filePath, hotelList.GetAllHotels());
 
             await DisplayAlert("Успіх", "Готель додано", "OK");
+
+            RefreshHotels();
         }
 
-        // Метод для редагування готелю
         private async void OnEditHotelClicked(object sender, EventArgs e)
         {
-            var hotels = hotelList.GetAllHotels();
+            var hotels = Hotels;
 
             if (hotels.Count > 0)
             {
@@ -99,6 +106,7 @@ namespace HotelBookingSystem
                     JsonFileHandler.SaveHotels(filePath, hotels);
 
                     await DisplayAlert("Успіх", "Готель оновлено", "OK");
+                    RefreshHotels();
                 }
                 else
                 {
@@ -111,7 +119,6 @@ namespace HotelBookingSystem
             }
         }
 
-        // Метод для пошуку готелів за місцем розташування
         private async void OnSearchByLocationClicked(object sender, EventArgs e)
         {
             string location = await DisplayPromptAsync("Пошук за місцем розташування", "Введіть місцезнаходження:");
@@ -126,7 +133,6 @@ namespace HotelBookingSystem
             await DisplayAlert("Пошук готелів за місцем розташування", displayResults, "OK");
         }
 
-        // Метод для пошуку готелів за діапазоном цін
         private async void OnSearchByPriceRangeClicked(object sender, EventArgs e)
         {
             string minPriceStr = await DisplayPromptAsync("Пошук за діапазоном цін", "Введіть мінімальну ціну за ніч:");
@@ -144,7 +150,6 @@ namespace HotelBookingSystem
             await DisplayAlert("Пошук готелів за діапазоном цін", displayResults, "OK");
         }
 
-        // Метод для пошуку готелів за кількістю доступних кімнат
         private async void OnSearchByAvailabilityClicked(object sender, EventArgs e)
         {
             string minRoomsStr = await DisplayPromptAsync("Пошук за кількістю кімнат", "Введіть мінімальну кількість доступних кімнат:");
@@ -160,12 +165,11 @@ namespace HotelBookingSystem
             await DisplayAlert("Пошук готелів за кількістю доступних кімнат", displayResults, "OK");
         }
 
-        // Метод для видалення готелю
         private async void OnRemoveHotelClicked(object sender, EventArgs e)
         {
             string idStr = await DisplayPromptAsync("Видалити Готель", "Введіть ID готелю для видалення:");
             int id = int.Parse(idStr);
-            var hotel = hotelList.GetAllHotels().FirstOrDefault(h => h.Id == id);
+            var hotel = Hotels.FirstOrDefault(h => h.Id == id);
 
             if (hotel != null)
             {
@@ -173,6 +177,7 @@ namespace HotelBookingSystem
                 JsonFileHandler.SaveHotels(filePath, hotelList.GetAllHotels());
 
                 await DisplayAlert("Успіх", "Готель видалено", "OK");
+                RefreshHotels();
             }
             else
             {
@@ -180,10 +185,16 @@ namespace HotelBookingSystem
             }
         }
 
-        // Метод для збереження даних при закритті програми
         private void OnAppClose(object sender, ModalPoppedEventArgs e)
         {
             JsonFileHandler.SaveHotels(filePath, hotelList.GetAllHotels());
+        }
+
+        private void RefreshHotels()
+        {
+            Hotels = hotelList.GetAllHotels();
+            BindingContext = null; // Очищення контексту
+            BindingContext = this; // Повторна прив'язка
         }
     }
 }

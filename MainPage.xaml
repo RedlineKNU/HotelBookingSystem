@@ -3,10 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HotelBookingSystem.MainPage">
     <StackLayout>
-        <Label Text="Система бронювання готелів"
-               VerticalOptions="CenterAndExpand"
-               HorizontalOptions="CenterAndExpand" />
-        <Button Text="Переглянути готелі" Clicked="OnViewHotelsClicked" />
+        <!-- Ваш існуючий інтерфейс -->
+        <!-- Таблиця для відображення списку готелів -->
+        <CollectionView x:Name="HotelsCollectionView"
+                ItemsSource="{Binding Hotels}"
+                SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" ColumnDefinitions="2*, *, *, *" RowDefinitions="Auto">
+                        <Label Text="{Binding Name}" Grid.Column="0" FontAttributes="Bold" />
+                        <Label Text="{Binding Location}" Grid.Column="1" />
+                        <Label Text="{Binding AvailableRooms}" Grid.Column="2" />
+                        <Label Text="{Binding PricePerNight}" Grid.Column="3" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <!-- <Button Text="Переглянути готелі" Clicked="OnViewHotelsClicked" />-->
         <Button Text="Про програму" Clicked="OnAboutClicked" />
         <Button Text="Додати готель" Clicked="OnAddHotelClicked" />
         <Button Text="Редагувати готель" Clicked="OnEditHotelClicked" />
