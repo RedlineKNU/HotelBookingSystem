@@ -33,22 +33,34 @@ public class JsonFileHandler
             Console.WriteLine($"Помилка під час збереження файлу: {ex.Message}");
         }
     }
-    
-        public static List<Hotel> DeserializeHotels(string jsonContent)
-        {
-            try
-            {
-                return JsonSerializer.Deserialize<List<Hotel>>(jsonContent);
-            }
-            catch
-            {
-                return null; // Повертає null, якщо дані некоректні
-            }
-        }
 
-        public static bool IsValidHotelData(List<Hotel> hotels)
+    public static List<Hotel> DeserializeHotels(string jsonContent)
+    {
+        try
         {
-            return hotels != null && hotels.All(h => h.Id > 0 && !string.IsNullOrWhiteSpace(h.Name));
+            return JsonSerializer.Deserialize<List<Hotel>>(jsonContent);
         }
+        catch
+        {
+            return null; // Повертає null, якщо дані некоректні
+        }
+    }
 
+    public static bool IsValidHotelData(List<Hotel> hotels)
+    {
+        return hotels != null && hotels.All(h => h.Id > 0 && !string.IsNullOrWhiteSpace(h.Name));
+    }
+
+    // Додавання методу для копіювання файлу
+    public static void CopyFile(string sourceFilePath, string destinationFilePath)
+    {
+        try
+        {
+            File.Copy(sourceFilePath, destinationFilePath, true);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Помилка під час копіювання файлу: {ex.Message}");
+        }
+    }
 }

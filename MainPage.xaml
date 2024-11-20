@@ -16,8 +16,8 @@
 
         <!-- Таблиця для відображення списку готелів -->
         <CollectionView x:Name="HotelsCollectionView"
-                ItemsSource="{Binding Hotels}"
-                SelectionMode="None">
+                        ItemsSource="{Binding Hotels}"
+                        SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="10" ColumnDefinitions="*, 2*, *, *, *" RowDefinitions="Auto">
@@ -33,7 +33,7 @@
 
         <!-- Кнопки для додаткових дій -->
         <Button Text="Обрати файл JSON" Clicked="OnChooseFileClicked" />
-        <!-- <Button Text="Зберегти зміни до файлу" Clicked="OnSaveChangesClicked" /> -->
+        <Button Text="Зберегти зміни до файлу" Clicked="OnSaveChangesClicked" />
         <Button Text="Про програму" Clicked="OnAboutClicked" />
         <Button Text="Додати готель" Clicked="OnAddHotelClicked" />
         <Button Text="Редагувати готель" Clicked="OnEditHotelClicked" />
