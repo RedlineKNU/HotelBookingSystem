@@ -4,12 +4,13 @@
     {
         public AboutPage()
         {
-            InitializeComponent();
+            InitializeComponent(); 
         }
+
 
         private async void OnBackClicked(object sender, EventArgs e)
         {
-            await Navigation.PopAsync();
+            await Navigation.PopAsync(); // Перехід назад на попередню сторінку.
         }
     }
 }

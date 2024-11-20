@@ -1,0 +1,107 @@
+[
+  {
+    "id": 1,
+    "name": "Kyiv Grand Hotel",
+    "location": "Kyiv",
+    "availableRooms": 15,
+    "pricePerNight": 200.00
+  },
+  {
+    "id": 2,
+    "name": "Black Sea Resort",
+    "location": "Odessa",
+    "availableRooms": 30,
+    "pricePerNight": 150.50
+  },
+  {
+    "id": 3,
+    "name": "Carpathian Lodge",
+    "location": "Carpathians",
+    "availableRooms": 25,
+    "pricePerNight": 100.00
+  },
+  {
+    "id": 4,
+    "name": "Dnipro Palace Hotel",
+    "location": "Dnipro",
+    "availableRooms": 20,
+    "pricePerNight": 175.00
+  },
+  {
+    "id": 5,
+    "name": "Sunset Hotel",
+    "location": "Lviv",
+    "availableRooms": 40,
+    "pricePerNight": 180.00
+  },
+  {
+    "id": 6,
+    "name": "River View Inn",
+    "location": "Kharkiv",
+    "availableRooms": 10,
+    "pricePerNight": 120.00
+  },
+  {
+    "id": 7,
+    "name": "Eco Hotel",
+    "location": "Vinnytsia",
+    "availableRooms": 15,
+    "pricePerNight": 90.00
+  },
+  {
+    "id": 8,
+    "name": "Seaside Resort",
+    "location": "Chornomorsk",
+    "availableRooms": 35,
+    "pricePerNight": 130.00
+  },
+  {
+    "id": 9,
+    "name": "Urban Comfort",
+    "location": "Kryvyi Rih",
+    "availableRooms": 12,
+    "pricePerNight": 110.00
+  },
+  {
+    "id": 10,
+    "name": "Historic Hotel",
+    "location": "Chernivtsi",
+    "availableRooms": 20,
+    "pricePerNight": 140.00
+  },
+  {
+    "id": 11,
+    "name": "Forest Escape",
+    "location": "Poltava",
+    "availableRooms": 18,
+    "pricePerNight": 125.00
+  },
+  {
+    "id": 12,
+    "name": "City Lights Hotel",
+    "location": "Zaporizhzhia",
+    "availableRooms": 25,
+    "pricePerNight": 160.00
+  },
+  {
+    "id": 13,
+    "name": "Peaceful Retreat",
+    "location": "Chernihiv",
+    "availableRooms": 10,
+    "pricePerNight": 95.00
+  },
+  {
+    "id": 14,
+    "name": "Sunny Suites",
+    "location": "Ivano-Frankivsk",
+    "availableRooms": 22,
+    "pricePerNight": 105.00
+  },
+  {
+    "id": 15,
+    "name": "Golden Bay Hotel",
+    "location": "Yalta",
+    "availableRooms": 30,
+    "pricePerNight": 210.00
+  }
+]

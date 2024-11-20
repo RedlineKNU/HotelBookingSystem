@@ -1,24 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HotelBookingSystem.AddEditHotelPage">
-    <StackLayout Padding="10">
-        <Label Text="{Binding PageTitle}" FontSize="Large" HorizontalOptions="Center" />
-        
-        <Label Text="Назва готелю"  />
-        <Entry x:Name="NameEntry"  Text="{Binding Hotel.Name}" />
+             x:Class="HotelBookingSystem.AddEditHotelPage"
+             BackgroundColor="#2d2d25">
+    <StackLayout Padding="10" Spacing="10">
+        <Label Text="{Binding PageTitle}" FontSize="Large" HorizontalOptions="Center" TextColor="White" />
 
-        <Label Text="Місцезнаходження"   />
-        <Entry x:Name="LocationEntry" Text="{Binding Hotel.Location}" />
+        <Label Text="Назва готелю" TextColor="White" />
+        <Entry x:Name="NameEntry" Text="{Binding Hotel.Name}" TextColor="White" BackgroundColor="#3e3e3e" />
 
-        <Label Text="Доступні кімнати"  />
-        <Entry x:Name="RoomsEntry" Text="{Binding Hotel.AvailableRooms}" Keyboard="Numeric" />
+        <Label Text="Місцезнаходження" TextColor="White" />
+        <Entry x:Name="LocationEntry" Text="{Binding Hotel.Location}" TextColor="White" BackgroundColor="#3e3e3e" />
 
-        <Label Text="Ціна за ніч"  />
-        <Entry x:Name="PriceEntry" Text="{Binding Hotel.PricePerNight}" Keyboard="Numeric" />
-        
+        <Label Text="Доступні кімнати" TextColor="White" />
+        <Entry x:Name="RoomsEntry" Text="{Binding Hotel.AvailableRooms}" Keyboard="Numeric" TextColor="White" BackgroundColor="#3e3e3e" />
 
-        <Button Text="Зберегти" Command="{Binding SaveCommand}" />
-        <Button Text="Скасувати" Command="{Binding CancelCommand}" />
+        <Label Text="Ціна за ніч" TextColor="White" />
+        <Entry x:Name="PriceEntry" Text="{Binding Hotel.PricePerNight}" Keyboard="Numeric" TextColor="White" BackgroundColor="#3e3e3e" />
+
+        <Button Text="Зберегти" Command="{Binding SaveCommand}" BackgroundColor="#2ecc71" TextColor="White" />
+        <Button Text="Скасувати" Command="{Binding CancelCommand}" BackgroundColor="#e74c3c" TextColor="White" />
     </StackLayout>
 </ContentPage>

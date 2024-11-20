@@ -6,36 +6,36 @@ namespace HotelBookingSystem
     {
         public Hotel Hotel { get; set; }
         public string PageTitle { get; set; }
-
         public ICommand SaveCommand { get; }
         public ICommand CancelCommand { get; }
 
         private Action<Hotel> _onSaveCallback;
 
+        // Конструктор AddEditHotelPage, який ініціалізує компоненти та встановлює початкові значення.
         public AddEditHotelPage(Hotel hotel, string title, Action<Hotel> onSaveCallback)
         {
-            InitializeComponent();
-            Hotel = hotel;
+            InitializeComponent(); 
+            Hotel = hotel; 
             PageTitle = title;
-            _onSaveCallback = onSaveCallback;
+            _onSaveCallback = onSaveCallback; 
 
-            SaveCommand = new Command(Save);
-            CancelCommand = new Command(Cancel);
+            SaveCommand = new Command(Save); 
+            CancelCommand = new Command(Cancel); 
 
-            BindingContext = this;
+            BindingContext = this; // Встановлюємо контекст прив'язки для інтерфейсу.
         }
 
         private async void Save()
         {
-            var validationResult = ValidateHotelData();
+            var validationResult = ValidateHotelData(); // Перевіряємо дані готелю.
             if (!validationResult.IsValid)
             {
-                await DisplayAlert("Помилка", validationResult.ErrorMessage, "OK");
+                await DisplayAlert("Помилка", validationResult.ErrorMessage, "OK"); 
                 return;
             }
 
-            _onSaveCallback?.Invoke(Hotel);
-            await Navigation.PopAsync();
+            _onSaveCallback?.Invoke(Hotel); // Викликаємо callback для збереження.
+            await Navigation.PopAsync(); 
         }
 
         private ValidationResult ValidateHotelData()
@@ -57,7 +57,7 @@ namespace HotelBookingSystem
 
         private async void Cancel()
         {
-            await Navigation.PopAsync();
+            await Navigation.PopAsync(); 
         }
     }
 
@@ -68,15 +68,17 @@ namespace HotelBookingSystem
 
         private ValidationResult(bool isValid, string errorMessage)
         {
-            IsValid = isValid;
-            ErrorMessage = errorMessage;
+            IsValid = isValid; 
+            ErrorMessage = errorMessage; 
         }
 
+        // Метод для створення успішного результату перевірки.
         public static ValidationResult Success()
         {
             return new ValidationResult(true, string.Empty);
         }
 
+        // Метод для створення результату перевірки з помилкою.
         public static ValidationResult Failed(string errorMessage)
         {
             return new ValidationResult(false, errorMessage);

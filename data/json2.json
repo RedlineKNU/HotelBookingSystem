@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "name": "Kyiv Grand Hotel",
+    "location": "Kyiv",
+    "availableRooms": 15,
+    "pricePerNight": 200.00
+  },
+  {
+    "id": 2,
+    "name": "Black Sea Resort",
+    "location": "Odessa",
+    "availableRooms": 30,
+    "pricePerNight": 150.50
+  },
+  {
+    "id": 3,
+    "name": "Carpathian Lodge",
+    "location": "Carpathians",
+    "availableRooms": 25,
+    "pricePerNight": 100.00
+  },
+  {
+    "id": 4,
+    "name": "Dnipro Palace Hotel",
+    "location": "Dnipro",
+    "availableRooms": 20,
+    "pricePerNight": 175.00
+  },
+  {
+    "id": 5,
+    "name": "Sunset Hotel",
+    "location": "Lviv",
+    "availableRooms": 40,
+    "pricePerNight": 180.00
+  },
+  {
+    "id": 6,
+    "name": "River View Inn",
+    "location": "Kharkiv",
+    "availableRooms": 10,
+    "pricePerNight": 120.00
+  },
+  {
+    "id": 7,
+    "name": "Eco Hotel",
+    "location": "Vinnytsia",
+    "availableRooms": 15,
+    "pricePerNight": 90.00
+  },
+  {
+    "id": 8,
+    "name": "Seaside Resort",
+    "location": "Chornomorsk",
+    "availableRooms": 35,
+    "pricePerNight": 130.00
+  }
+]

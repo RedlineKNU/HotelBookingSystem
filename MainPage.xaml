@@ -2,44 +2,46 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HotelBookingSystem.MainPage">
-    <StackLayout>
-        <!-- Ваш існуючий інтерфейс -->
-
+    <StackLayout Padding="10">
         <!-- Заголовки для таблиці -->
-        <Grid Padding="10" ColumnDefinitions="*, 2*, *, *, *" RowDefinitions="Auto">
-            <Label Text="ID" FontAttributes="Bold" Grid.Column="0" HorizontalOptions="Start" />
-            <Label Text="Назва готелю" FontAttributes="Bold" Grid.Column="1" HorizontalOptions="Start" />
-            <Label Text="Місцезнаходження" FontAttributes="Bold" Grid.Column="2" HorizontalOptions="Start" />
-            <Label Text="Доступні кімнати" FontAttributes="Bold" Grid.Column="3" HorizontalOptions="Start" />
-            <Label Text="Ціна за ніч" FontAttributes="Bold" Grid.Column="4" HorizontalOptions="Start" />
+        <Grid Padding="10" ColumnDefinitions="0.2*, 2*, *, *, *" RowDefinitions="Auto" BackgroundColor="#2d2d25">
+            <Label Text="ID" FontAttributes="Bold" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" />
+            <Label Text="Назва готелю" FontAttributes="Bold" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" />
+            <Label Text="Місцезнаходження" FontAttributes="Bold" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" />
+            <Label Text="Доступні кімнати" FontAttributes="Bold" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" />
+            <Label Text="Ціна за ніч" FontAttributes="Bold" Grid.Column="4" HorizontalOptions="Start" VerticalOptions="Center" />
         </Grid>
 
-        <!-- Таблиця для відображення списку готелів -->
-        <CollectionView x:Name="HotelsCollectionView"
-                        ItemsSource="{Binding Hotels}"
-                        SelectionMode="None">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Padding="10" ColumnDefinitions="*, 2*, *, *, *" RowDefinitions="Auto">
-                        <Label Text="{Binding Id}" Grid.Column="0" />
-                        <Label Text="{Binding Name}" Grid.Column="1" />
-                        <Label Text="{Binding Location}" Grid.Column="2" />
-                        <Label Text="{Binding AvailableRooms}" Grid.Column="3" />
-                        <Label Text="{Binding PricePerNight}" Grid.Column="4" />
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <ScrollView VerticalOptions="FillAndExpand">
+            <CollectionView x:Name="HotelsCollectionView"
+                            ItemsSource="{Binding Hotels}"
+                            SelectionMode="None"
+                            HeightRequest="350">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10" ColumnDefinitions="0.2*, 2*, *, *, *" RowDefinitions="Auto" BackgroundColor="#2d2d25" Margin="0,0,0,5" >
+                            <Label Text="{Binding Id}" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" />
+                            <Label Text="{Binding Name}" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" />
+                            <Label Text="{Binding Location}" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" />
+                            <Label Text="{Binding AvailableRooms}" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" />
+                            <Label Text="{Binding PricePerNight}" Grid.Column="4" HorizontalOptions="Start" VerticalOptions="Center" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
 
         <!-- Кнопки для додаткових дій -->
-        <Button Text="Обрати файл JSON" Clicked="OnChooseFileClicked" />
-        <Button Text="Зберегти зміни до файлу" Clicked="OnSaveChangesClicked" />
-        <Button Text="Про програму" Clicked="OnAboutClicked" />
-        <Button Text="Додати готель" Clicked="OnAddHotelClicked" />
-        <Button Text="Редагувати готель" Clicked="OnEditHotelClicked" />
-        <Button Text="Пошук за місцем розташування" Clicked="OnSearchByLocationClicked" />
-        <Button Text="Пошук за діапазоном цін" Clicked="OnSearchByPriceRangeClicked" />
-        <Button Text="Пошук за кількістю кімнат" Clicked="OnSearchByAvailabilityClicked" />
-        <Button Text="Видалити готель" Clicked="OnRemoveHotelClicked" />
+        <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="Center" Padding="10,0">
+            <Button Text="Обрати файл JSON" Clicked="OnChooseFileClicked" BackgroundColor="#3498db" TextColor="White" />
+            <Button Text="Зберегти зміни до файлу" Clicked="OnSaveChangesClicked" BackgroundColor="#2ecc71" TextColor="White" />
+            <Button Text="Про програму" Clicked="OnAboutClicked" BackgroundColor="#e67e22" TextColor="White" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="Center" Padding="0,10">
+            <Button Text="Додати готель" Clicked="OnAddHotelClicked" BackgroundColor="#f1c40f" TextColor="Black" />
+            <Button Text="Редагувати готель" Clicked="OnEditHotelClicked" BackgroundColor="#e74c3c" TextColor="White" />
+            <Button Text="Пошук" Clicked="OnAdvancedSearchClicked" BackgroundColor="#9b59b6" TextColor="White" />
+            <Button Text="Видалити готель" Clicked="OnRemoveHotelClicked" BackgroundColor="#34495e" TextColor="White" />
+        </StackLayout>
     </StackLayout>
 </ContentPage>

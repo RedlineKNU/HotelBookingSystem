@@ -19,9 +19,11 @@
 
     public void EditHotel(int id, Hotel updatedHotel)
     {
+        // Знаходимо готель за ідентифікатором
         var hotel = hotels.FirstOrDefault(h => h.Id == id);
         if (hotel != null)
         {
+            // Оновлюємо властивості готелю
             hotel.Name = updatedHotel.Name;
             hotel.Location = updatedHotel.Location;
             hotel.AvailableRooms = updatedHotel.AvailableRooms;
@@ -34,7 +36,7 @@
         var hotel = hotels.FirstOrDefault(h => h.Id == id);
         if (hotel != null)
         {
-            hotels.Remove(hotel);
+            hotels.Remove(hotel); 
         }
     }
 

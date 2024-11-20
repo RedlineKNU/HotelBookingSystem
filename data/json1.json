@@ -1,23 +1,23 @@
 [
   {
     "id": 1,
-    "name": "Hotel Sunrise",
+    "name": "Kyiv Grand Hotel",
     "location": "Kyiv",
-    "pricePerNight": 100.50,
-    "availableRooms": 5
+    "availableRooms": 15,
+    "pricePerNight": 200.00
   },
   {
     "id": 2,
-    "name": "Hotel Ocean",
+    "name": "Black Sea Resort",
     "location": "Odessa",
-    "pricePerNight": 120.75,
-    "availableRooms": 3
+    "availableRooms": 30,
+    "pricePerNight": 150.50
   },
   {
     "id": 3,
-    "name": "Mountain Retreat",
+    "name": "Carpathian Lodge",
     "location": "Carpathians",
-    "pricePerNight": 85.00,
-    "availableRooms": 8
+    "availableRooms": 25,
+    "pricePerNight": 100.00
   }
 ]

@@ -1,16 +1,19 @@
-﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="HotelBookingSystem.SearchHotelsPage" Title="Пошук готелів">
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HotelBookingSystem.SearchHotelsPage"
+             Title="Пошук готелів"
+             BackgroundColor="#2d2d25">
     <ContentPage.Content>
-        <StackLayout Padding="10">
+        <StackLayout Padding="20" Spacing="10">
             <!-- Список результатів -->
-            <ListView ItemsSource="{Binding FilteredHotels}" SelectionMode="None">
+            <ListView ItemsSource="{Binding FilteredHotels}" SelectionMode="None" BackgroundColor="#3e3e3e">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Vertical" Padding="10">
-                                <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" />
+                            <StackLayout Orientation="Vertical" Padding="10" BackgroundColor="#3e3e3e">
+                                <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" TextColor="White" />
                                 <Label Text="{Binding Location}" FontSize="14" TextColor="Gray" />
-                                <Label Text="{Binding AvailableRooms, StringFormat='Доступні кімнати: {0}'}" FontSize="12" />
-                                <!-- Оновлений формат ціни в доларах -->
+                                <Label Text="{Binding AvailableRooms, StringFormat='Доступні кімнати: {0}'}" FontSize="12" TextColor="White" />
                                 <Label Text="{Binding PricePerNight, StringFormat='Ціна за ніч: {0}$'}" FontSize="12" TextColor="Green" />
                             </StackLayout>
                         </ViewCell>

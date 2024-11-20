@@ -8,16 +8,16 @@ public class JsonFileHandler
         {
             if (!File.Exists(filePath))
             {
-                return new List<Hotel>(); // Якщо файл не існує, повертаємо порожній список
+                return new List<Hotel>(); // Якщо файл не існує, повертаємо порожній список.
             }
 
-            string jsonContent = File.ReadAllText(filePath);
-            return JsonSerializer.Deserialize<List<Hotel>>(jsonContent) ?? new List<Hotel>();
+            string jsonContent = File.ReadAllText(filePath); // Читаємо вміст файлу.
+            return JsonSerializer.Deserialize<List<Hotel>>(jsonContent) ?? new List<Hotel>(); // Десеріалізуємо JSON у список готелів.
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Помилка під час читання файлу: {ex.Message}");
-            return new List<Hotel>();
+            Console.WriteLine($"Помилка під час читання файлу: {ex.Message}"); 
+            return new List<Hotel>(); 
         }
     }
 
@@ -25,12 +25,12 @@ public class JsonFileHandler
     {
         try
         {
-            var jsonString = JsonSerializer.Serialize(hotels, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(filePath, jsonString);
+            var jsonString = JsonSerializer.Serialize(hotels, new JsonSerializerOptions { WriteIndented = true }); 
+            File.WriteAllText(filePath, jsonString); 
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Помилка під час збереження файлу: {ex.Message}");
+            Console.WriteLine($"Помилка під час збереження файлу: {ex.Message}"); 
         }
     }
 
@@ -38,25 +38,25 @@ public class JsonFileHandler
     {
         try
         {
-            return JsonSerializer.Deserialize<List<Hotel>>(jsonContent);
+            return JsonSerializer.Deserialize<List<Hotel>>(jsonContent); 
         }
         catch
         {
-            return null; // Повертає null, якщо дані некоректні
+            return null; 
         }
     }
 
+
     public static bool IsValidHotelData(List<Hotel> hotels)
     {
-        return hotels != null && hotels.All(h => h.Id > 0 && !string.IsNullOrWhiteSpace(h.Name));
+        return hotels != null && hotels.All(h => h.Id > 0 && !string.IsNullOrWhiteSpace(h.Name)); 
     }
 
-    // Додавання методу для копіювання файлу
     public static void CopyFile(string sourceFilePath, string destinationFilePath)
     {
         try
         {
-            File.Copy(sourceFilePath, destinationFilePath, true);
+            File.Copy(sourceFilePath, destinationFilePath, true); 
         }
         catch (Exception ex)
         {
