@@ -18,3 +18,5 @@ public class Hotel
     public decimal PricePerNight { get; set; }
 
 }
+
+

@@ -1,5 +1,5 @@
-﻿using System.Collections.ObjectModel;
-
+﻿
+using System.Collections.ObjectModel;
 
 namespace HotelBookingSystem
 {
@@ -54,10 +54,63 @@ namespace HotelBookingSystem
             }
         }
 
+        private async void OnChooseFileClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var jsonFileType = new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+                {
+                    { DevicePlatform.iOS, new[] { "public.json" } },
+                    { DevicePlatform.Android, new[] { "application/json" } },
+                    { DevicePlatform.WinUI, new[] { ".json" } },
+                    { DevicePlatform.macOS, new[] { "json" } }
+                });
+
+                var result = await FilePicker.Default.PickAsync(new PickOptions
+                {
+                    PickerTitle = "Виберіть JSON файл",
+                    FileTypes = jsonFileType // Обмеження вибору лише файлами JSON
+                });
+
+                if (result != null)
+                {
+                    // Читання вмісту вибраного файлу
+                    string fileContent = await File.ReadAllTextAsync(result.FullPath);
+
+                    // Десеріалізація JSON в об'єкти
+                    var hotels = JsonFileHandler.DeserializeHotels(fileContent);
+
+                    if (hotels != null)
+                    {
+                        hotelList = new HotelList(hotels);
+                        RefreshHotels(); // Оновлення списку
+                        await DisplayAlert("Успіх", "Дані успішно завантажені!", "OK");
+                    }
+                    else
+                    {
+                        await DisplayAlert("Помилка", "Файл JSON містить некоректні дані.", "OK");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Помилка", $"Не вдалося завантажити файл: {ex.Message}", "OK");
+            }
+        }
+
+
+        private void RefreshHotels()
+        {
+            Hotels = hotelList.GetAllHotels();
+            BindingContext = null;
+            BindingContext = this;
+        }
+
         private async void OnAboutClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AboutPage());
         }
+
         private async void OnSearchByLocationClicked(object sender, EventArgs e)
         {
             try
@@ -82,8 +135,6 @@ namespace HotelBookingSystem
                 await DisplayAlert("Помилка", $"Сталася помилка: {ex.Message}", "OK");
             }
         }
-
-
 
         private async void OnAddHotelClicked(object sender, EventArgs e)
         {
@@ -163,19 +214,6 @@ namespace HotelBookingSystem
                 await DisplayAlert("Помилка", $"Сталася помилка: {ex.Message}", "OK");
             }
         }
-
-        private async void OnSearchClicked(object sender, EventArgs e)
-        {
-            try
-            {
-                // Перехід на нову сторінку пошуку
-                await Navigation.PushAsync(new SearchHotelsPage(new ObservableCollection<Hotel>(hotelList.GetAllHotels())));
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Помилка", $"Не вдалося відкрити сторінку пошуку: {ex.Message}", "OK");
-            }
-        }
         private async void OnSearchByPriceRangeClicked(object sender, EventArgs e)
         {
             try
@@ -211,19 +249,6 @@ namespace HotelBookingSystem
                 await DisplayAlert("Помилка", $"Сталася помилка: {ex.Message}", "OK");
             }
         }
-
-        private void OnSearchCompleted(object sender, EventArgs e)
-        {
-            // Ваш код обробки події пошуку
-            var searchBar = sender as SearchBar;
-            if (searchBar != null)
-            {
-                string query = searchBar.Text;
-                // Реалізація пошуку за введеним текстом
-                DisplayAlert("Результат пошуку", $"Ви шукали: {query}", "OK");
-            }
-        }
-
         private async void OnSearchByAvailabilityClicked(object sender, EventArgs e)
         {
             try
@@ -251,14 +276,6 @@ namespace HotelBookingSystem
             {
                 await DisplayAlert("Помилка", $"Сталася помилка: {ex.Message}", "OK");
             }
-        }
-
-
-        private void RefreshHotels()
-        {
-            Hotels = hotelList.GetAllHotels();
-            BindingContext = null;
-            BindingContext = this;
         }
     }
 }

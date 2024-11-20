@@ -4,6 +4,16 @@
              x:Class="HotelBookingSystem.MainPage">
     <StackLayout>
         <!-- Ваш існуючий інтерфейс -->
+
+        <!-- Заголовки для таблиці -->
+        <Grid Padding="10" ColumnDefinitions="*, 2*, *, *, *" RowDefinitions="Auto">
+            <Label Text="ID" FontAttributes="Bold" Grid.Column="0" HorizontalOptions="Start" />
+            <Label Text="Назва готелю" FontAttributes="Bold" Grid.Column="1" HorizontalOptions="Start" />
+            <Label Text="Місцезнаходження" FontAttributes="Bold" Grid.Column="2" HorizontalOptions="Start" />
+            <Label Text="Доступні кімнати" FontAttributes="Bold" Grid.Column="3" HorizontalOptions="Start" />
+            <Label Text="Ціна за ніч" FontAttributes="Bold" Grid.Column="4" HorizontalOptions="Start" />
+        </Grid>
+
         <!-- Таблиця для відображення списку готелів -->
         <CollectionView x:Name="HotelsCollectionView"
                 ItemsSource="{Binding Hotels}"
@@ -11,8 +21,8 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="10" ColumnDefinitions="*, 2*, *, *, *" RowDefinitions="Auto">
-                        <Label Text="{Binding Id}" Grid.Column="0" FontAttributes="Bold" />
-                        <Label Text="{Binding Name}" Grid.Column="1" FontAttributes="Bold" />
+                        <Label Text="{Binding Id}" Grid.Column="0" />
+                        <Label Text="{Binding Name}" Grid.Column="1" />
                         <Label Text="{Binding Location}" Grid.Column="2" />
                         <Label Text="{Binding AvailableRooms}" Grid.Column="3" />
                         <Label Text="{Binding PricePerNight}" Grid.Column="4" />
@@ -20,7 +30,10 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <!-- <Button Text="Переглянути готелі" Clicked="OnViewHotelsClicked" />-->
+
+        <!-- Кнопки для додаткових дій -->
+        <Button Text="Обрати файл JSON" Clicked="OnChooseFileClicked" />
+        <!-- <Button Text="Зберегти зміни до файлу" Clicked="OnSaveChangesClicked" /> -->
         <Button Text="Про програму" Clicked="OnAboutClicked" />
         <Button Text="Додати готель" Clicked="OnAddHotelClicked" />
         <Button Text="Редагувати готель" Clicked="OnEditHotelClicked" />

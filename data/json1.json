@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Hotel Sunrise",
+    "location": "Kyiv",
+    "pricePerNight": 100.50,
+    "availableRooms": 5,
+  },
+  {
+    "id": 2,
+    "name": "Hotel Ocean",
+    "location": "Odessa",
+    "pricePerNight": 120.75,
+    "availableRooms": 3,
+  },
+  {
+    "id": 3,
+    "name": "Mountain Retreat",
+    "location": "Carpathians",
+    "pricePerNight": 85.00,
+    "availableRooms": 8,
+  }
+]
