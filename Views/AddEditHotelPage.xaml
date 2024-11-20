@@ -4,11 +4,19 @@
              x:Class="HotelBookingSystem.AddEditHotelPage">
     <StackLayout Padding="10">
         <Label Text="{Binding PageTitle}" FontSize="Large" HorizontalOptions="Center" />
+        
+        <Label Text="Назва готелю"  />
+        <Entry x:Name="NameEntry"  Text="{Binding Hotel.Name}" />
 
-        <Entry x:Name="NameEntry" Placeholder="Назва готелю" Text="{Binding Hotel.Name}" />
-        <Entry x:Name="LocationEntry" Placeholder="Місцезнаходження" Text="{Binding Hotel.Location}" />
-        <Entry x:Name="RoomsEntry" Placeholder="Доступні кімнати" Text="{Binding Hotel.AvailableRooms}" Keyboard="Numeric" />
-        <Entry x:Name="PriceEntry" Placeholder="Ціна за ніч" Text="{Binding Hotel.PricePerNight}" Keyboard="Numeric" />
+        <Label Text="Місцезнаходження"   />
+        <Entry x:Name="LocationEntry" Text="{Binding Hotel.Location}" />
+
+        <Label Text="Доступні кімнати"  />
+        <Entry x:Name="RoomsEntry" Text="{Binding Hotel.AvailableRooms}" Keyboard="Numeric" />
+
+        <Label Text="Ціна за ніч"  />
+        <Entry x:Name="PriceEntry" Text="{Binding Hotel.PricePerNight}" Keyboard="Numeric" />
+        
 
         <Button Text="Зберегти" Command="{Binding SaveCommand}" />
         <Button Text="Скасувати" Command="{Binding CancelCommand}" />
