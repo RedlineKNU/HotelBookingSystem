@@ -6,13 +6,33 @@ public class JsonFileHandler
 {
     public static List<Hotel> LoadHotels(string filePath)
     {
-        var jsonString = File.ReadAllText(filePath);
-        return JsonSerializer.Deserialize<List<Hotel>>(jsonString);
+        try
+        {
+            if (!File.Exists(filePath))
+            {
+                return new List<Hotel>(); // Якщо файл не існує, повертаємо порожній список
+            }
+
+            string jsonContent = File.ReadAllText(filePath);
+            return JsonSerializer.Deserialize<List<Hotel>>(jsonContent) ?? new List<Hotel>();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Помилка під час читання файлу: {ex.Message}");
+            return new List<Hotel>();
+        }
     }
 
     public static void SaveHotels(string filePath, List<Hotel> hotels)
     {
-        var jsonString = JsonSerializer.Serialize(hotels);
-        File.WriteAllText(filePath, jsonString);
+        try
+        {
+            var jsonString = JsonSerializer.Serialize(hotels, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(filePath, jsonString);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Помилка під час збереження файлу: {ex.Message}");
+        }
     }
 }
