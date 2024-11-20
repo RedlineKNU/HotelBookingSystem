@@ -1,0 +1,22 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="HotelBookingSystem.SearchHotelsPage" Title="Пошук готелів">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <!-- Список результатів -->
+            <ListView ItemsSource="{Binding FilteredHotels}" SelectionMode="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical" Padding="10">
+                                <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" />
+                                <Label Text="{Binding Location}" FontSize="14" TextColor="Gray" />
+                                <Label Text="{Binding AvailableRooms, StringFormat='Доступні кімнати: {0}'}" FontSize="12" />
+                                <!-- Оновлений формат ціни в доларах -->
+                                <Label Text="{Binding PricePerNight, StringFormat='Ціна за ніч: {0}$'}" FontSize="12" TextColor="Green" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

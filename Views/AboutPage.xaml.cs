@@ -1,6 +1,4 @@
-﻿using Microsoft.Maui.Controls;
-
-namespace HotelBookingSystem
+﻿namespace HotelBookingSystem
 {
     public partial class AboutPage : ContentPage
     {

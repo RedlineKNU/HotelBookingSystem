@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 public class Hotel
 {
@@ -17,4 +16,5 @@ public class Hotel
 
     [JsonPropertyName("pricePerNight")]
     public decimal PricePerNight { get; set; }
+
 }

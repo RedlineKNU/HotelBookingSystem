@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-public class HotelList
+﻿public class HotelList
 {
     private List<Hotel> hotels;
 

@@ -1,6 +1,4 @@
-﻿using Microsoft.Maui.Controls;
-using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace HotelBookingSystem
 {
@@ -29,10 +27,10 @@ namespace HotelBookingSystem
 
         private async void Save()
         {
-            if (string.IsNullOrWhiteSpace(Hotel.Name) || string.IsNullOrWhiteSpace(Hotel.Location) ||
-                Hotel.AvailableRooms <= 0 || Hotel.PricePerNight <= 0)
+            var validationResult = ValidateHotelData();
+            if (!validationResult.IsValid)
             {
-                await DisplayAlert("Помилка", "Перевірте всі поля. Вони мають бути заповнені правильно.", "OK");
+                await DisplayAlert("Помилка", validationResult.ErrorMessage, "OK");
                 return;
             }
 
@@ -40,9 +38,48 @@ namespace HotelBookingSystem
             await Navigation.PopAsync();
         }
 
+        private ValidationResult ValidateHotelData()
+        {
+            if (string.IsNullOrWhiteSpace(Hotel.Name))
+                return ValidationResult.Failed("Назва готелю не може бути порожньою.");
+
+            if (string.IsNullOrWhiteSpace(Hotel.Location))
+                return ValidationResult.Failed("Місцезнаходження не може бути порожнім.");
+
+            if (Hotel.AvailableRooms <= 0)
+                return ValidationResult.Failed("Кількість доступних кімнат має бути більше 0.");
+
+            if (Hotel.PricePerNight <= 0)
+                return ValidationResult.Failed("Ціна за ніч має бути більше 0.");
+
+            return ValidationResult.Success();
+        }
+
         private async void Cancel()
         {
             await Navigation.PopAsync();
+        }
+    }
+
+    public class ValidationResult
+    {
+        public bool IsValid { get; private set; }
+        public string ErrorMessage { get; private set; }
+
+        private ValidationResult(bool isValid, string errorMessage)
+        {
+            IsValid = isValid;
+            ErrorMessage = errorMessage;
+        }
+
+        public static ValidationResult Success()
+        {
+            return new ValidationResult(true, string.Empty);
+        }
+
+        public static ValidationResult Failed(string errorMessage)
+        {
+            return new ValidationResult(false, errorMessage);
         }
     }
 }

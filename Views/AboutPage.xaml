@@ -4,9 +4,9 @@
              x:Class="HotelBookingSystem.AboutPage">
     <StackLayout Padding="20">
         <Label Text="Про програму" FontSize="Large" HorizontalOptions="Center" />
-        <Label Text="ПІБ: Ваше ім'я" />
-        <Label Text="Курс: Ваш курс" />
-        <Label Text="Група: Ваша група" />
+        <Label Text="ПІБ: Андрій Горобійченко" />
+        <Label Text="Курс: ООП" />
+        <Label Text="Група: К-26" />
         <Label Text="Рік: 2024" />
         <Label Text="Короткий опис: Це програма для бронювання готелів." 
                Margin="0,20,0,0" />
