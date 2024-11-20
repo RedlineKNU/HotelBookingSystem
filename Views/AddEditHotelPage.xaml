@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HotelBookingSystem.AddEditHotelPage">
+    <StackLayout Padding="10">
+        <Label Text="{Binding PageTitle}" FontSize="Large" HorizontalOptions="Center" />
+
+        <Entry x:Name="NameEntry" Placeholder="Назва готелю" Text="{Binding Hotel.Name}" />
+        <Entry x:Name="LocationEntry" Placeholder="Місцезнаходження" Text="{Binding Hotel.Location}" />
+        <Entry x:Name="RoomsEntry" Placeholder="Доступні кімнати" Text="{Binding Hotel.AvailableRooms}" Keyboard="Numeric" />
+        <Entry x:Name="PriceEntry" Placeholder="Ціна за ніч" Text="{Binding Hotel.PricePerNight}" Keyboard="Numeric" />
+
+        <Button Text="Зберегти" Command="{Binding SaveCommand}" />
+        <Button Text="Скасувати" Command="{Binding CancelCommand}" />
+    </StackLayout>
+</ContentPage>
